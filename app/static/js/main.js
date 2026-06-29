@@ -61,6 +61,8 @@ let chartLoadController = null;
 let expandedChartInstance = null;
 let expandLoadSequence = 0;
 let expandLoadController = null;
+let autoRefreshTimer = null;
+const AUTO_REFRESH_INTERVAL_MS = 60000;
 
 function capitalizeFirstLetter(val) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
@@ -580,6 +582,16 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         
         loadAllCharts();
+        startAutoRefresh();
+    }
+});
+
+window.addEventListener("beforeunload", stopAutoRefresh);
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+        startAutoRefresh();
+    } else {
+        stopAutoRefresh();
     }
 });
 
@@ -674,6 +686,25 @@ async function loadMeasurementTypesForSelect(selectId, selectedId = "") {
 function refreshChartsIfVisible() {
     if (document.getElementById("chartsContainer")) {
         loadAllCharts();
+    }
+}
+
+function startAutoRefresh() {
+    if (autoRefreshTimer) {
+        clearInterval(autoRefreshTimer);
+    }
+
+    autoRefreshTimer = setInterval(() => {
+        if (document.visibilityState === "visible" && document.getElementById("chartsContainer")) {
+            loadAllCharts();
+        }
+    }, AUTO_REFRESH_INTERVAL_MS);
+}
+
+function stopAutoRefresh() {
+    if (autoRefreshTimer) {
+        clearInterval(autoRefreshTimer);
+        autoRefreshTimer = null;
     }
 }
 
