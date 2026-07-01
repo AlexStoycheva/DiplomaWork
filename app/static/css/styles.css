@@ -5,6 +5,68 @@ body {
     padding: 0;
 }
 
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f4f6f8 0%, #e9eef3 100%);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.login-card {
+    width: min(100%, 380px);
+    background: white;
+    padding: 32px 28px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.login-card h2 {
+    margin: 0 0 20px;
+    text-align: center;
+    color: #333;
+}
+
+.login-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d7dde3;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+.login-card button {
+    width: 100%;
+    padding: 12px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 4px;
+}
+
+.login-card button:hover {
+    background: #43a047;
+}
+
+.login-card #error {
+    color: #d9534f;
+    margin: 12px 0 0;
+    min-height: 18px;
+    text-align: center;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
