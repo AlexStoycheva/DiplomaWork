@@ -1003,6 +1003,7 @@ def dashboard_page(request: Request):
             credentials = token
         
         user = get_current_user(
+            request=request,
             credentials=FakeCredentials(),
             db=db
         )
