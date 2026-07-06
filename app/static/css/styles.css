@@ -1,3 +1,7 @@
+html {
+    zoom: 0.85;
+}
+
 body {
     font-family: Arial, sans-serif;
     background: #f4f6f8;
